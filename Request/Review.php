@@ -2,18 +2,16 @@
 
 
 
-class AcctByte_Alibris_Request_Review
+class AcctByte_Alibris_Request_Review extends AcctByte_Alibris_Request_Abstract
 {
 
+    
     protected $work;
-
-    protected $apikey;
-
 
     public function __construct ($inRequestArguments)
     {
+        parent::__construct($inRequestArguments);
         $this->setWork($inRequestArguments[ 'work' ]);
-        $this->setApikey($inRequestArguments[ 'apikey' ]);
     }
 
 
@@ -27,13 +25,10 @@ class AcctByte_Alibris_Request_Review
     }
 
 
-    public function getQueryString ()
+    public function toArray ()
     {
         $args[ 'work' ] = $this->getWork();
-        $args[ 'apikey' ] = $this->getApikey();
-        
-        $query_str = http_build_query($args);
-        return $query_str;
+        return array_merge(parent::toArray(), array_filter($args));
     }
 
 
@@ -49,32 +44,11 @@ class AcctByte_Alibris_Request_Review
 
     /**
      *
-     * @return the $apikey
-     */
-    public function getApikey ()
-    {
-        return $this->apikey;
-    }
-
-
-    /**
-     *
      * @param $work the
      *            $work to set
      */
     public function setWork ($work)
     {
         $this->work = $work;
-    }
-
-
-    /**
-     *
-     * @param $apikey the
-     *            $apikey to set
-     */
-    public function setApikey ($apikey)
-    {
-        $this->apikey = $apikey;
     }
 }

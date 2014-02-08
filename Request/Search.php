@@ -2,9 +2,10 @@
 
 
 
-class AcctByte_Alibris_Request_Search
+class AcctByte_Alibris_Request_Search extends AcctByte_Alibris_Request_Abstract
 {
 
+    
     protected $wauth;
 
     protected $wtit;
@@ -21,12 +22,11 @@ class AcctByte_Alibris_Request_Search
 
     protected $qsort;
 
-    protected $apikey;
-
 
     public function __construct ($inRequestArguments)
     {
-        $this->setApikey($inRequestArguments[ 'apikey' ]);
+        parent::__construct($inRequestArguments);
+        
         $this->setQsort($inRequestArguments[ 'qsort' ]);
         
         if ( isset($inRequestArguments[ 'wauth' ]) ) {
@@ -69,7 +69,7 @@ class AcctByte_Alibris_Request_Search
     }
 
 
-    public function getQueryString ()
+    public function toArray ()
     {
         $args[ 'wauth' ] = $this->getWauth();
         $args[ 'wtit' ] = $this->getWtit();
@@ -79,10 +79,8 @@ class AcctByte_Alibris_Request_Search
         $args[ 'chunk' ] = $this->getChunk();
         $args[ 'skip' ] = $this->getSkip();
         $args[ 'qsort' ] = $this->getQsort();
-        $args[ 'apikey' ] = $this->getApikey();
         
-        $query_str = http_build_query($args);
-        return $query_str;
+        return array_merge(parent::toArray(), array_filter($args));
     }
 
 
@@ -163,16 +161,6 @@ class AcctByte_Alibris_Request_Search
     public function getQsort ()
     {
         return $this->qsort;
-    }
-
-
-    /**
-     *
-     * @return the $apikey
-     */
-    public function getApikey ()
-    {
-        return $this->apikey;
     }
 
 
@@ -288,16 +276,5 @@ class AcctByte_Alibris_Request_Search
             throw new AcctByte_Alibris_Exception('Invalid Sort Option Supplied', 500);
         }
         $this->qsort = $qsort;
-    }
-
-
-    /**
-     *
-     * @param $apikey the
-     *            $apikey to set
-     */
-    public function setApikey ($apikey)
-    {
-        $this->apikey = $apikey;
     }
 }

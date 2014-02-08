@@ -1,90 +1,110 @@
 <?php
-class AcctByte_Alibris_Request_ItemSearch
-{
 
+
+
+class AcctByte_Alibris_Request_ItemSearch extends AcctByte_Alibris_Request_Abstract
+{
+    
+    
     // BASIC
     /**
      * Use artist name for music Use actor or director name for movies
+     *
      * @var string
      */
     protected $qauth;
 
     /**
+     *
      * @var string
      */
     protected $qtit;
 
     /**
      * Use genre for music and movies
+     *
      * @var string
      */
     protected $qtopic;
 
     /**
-     * Represents an author/Title combination.  Returned from an item or works search.
+     * Represents an author/Title combination.
+     * Returned from an item or works search.
+     *
      * @var string
      */
     protected $qwork;
 
     /**
+     *
      * @var string
      */
     protected $query;
 
     /**
      * Publisher
+     *
      * @var string
      */
     protected $qpub;
 
     /**
      * Use UPC for music or movies
+     *
      * @var string
      */
     protected $qisbn;
 
     /**
-     * Comma separated list if isbns or UPCs. 
+     * Comma separated list if isbns or UPCs.
+     *
      * Results are returned for all isbns in the list.
      * Use this to search for multiple ISBNs in the same call.
+     *
      * @var string
      */
     protected $qisbnlist;
 
     /**
      * Condition Lower bound [1-6]
+     *
      * @var integer
      */
     protected $qcond;
 
     /**
      * Condition Upper bound [1-6]
+     *
      * @var integer
      */
     protected $qcondhi;
 
     /**
      * Rating Lower bound [1-5]
+     *
      * @var integer
      */
     protected $qrating;
 
     /**
      * Library of Congress Classification
+     *
      * @var string
      */
     protected $qlccl;
-
     
+
     // LIMITING
     /**
      * Alibris Inventory ID
+     *
      * @var string
      */
     protected $Invid;
 
     /**
      * Alibris Seller ID
+     *
      * @var string
      */
     protected $quserid;
@@ -107,30 +127,35 @@ class AcctByte_Alibris_Request_ItemSearch
     protected $dj;
 
     /**
+     *
      * @var string
      */
     protected $language;
 
     /**
      * lower bound, currency in USD, do not include dollar sign
+     *
      * @var float
      */
     protected $qprice;
 
     /**
      * upper bound, currency in USD, do not include dollar sign
+     *
      * @var float
      */
     protected $qpricehi;
 
     /**
      * lower bound
+     *
      * @var integer
      */
     protected $qyear;
 
     /**
      * upper bound
+     *
      * @var integer
      */
     protected $qyearhi;
@@ -139,10 +164,11 @@ class AcctByte_Alibris_Request_ItemSearch
 
     /**
      * "1 day" or "7 days" or "14 days"
+     *
      * @var string
      */
     protected $qdays;
-
+    
     // ADDITIONAL
     protected $mtype;
 
@@ -152,12 +178,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
     protected $qsort;
 
-    protected $apikey;
-
 
     public function __construct ($inRequestArguments)
     {
-        
         if ( isset($inRequestArguments[ 'qauth' ]) ) {
             $this->setQauth($inRequestArguments[ 'qauth' ]);
         }
@@ -274,11 +297,11 @@ class AcctByte_Alibris_Request_ItemSearch
         if ( isset($inRequestArguments[ 'skip' ]) ) {
             $this->setSkip($inRequestArguments[ 'skip' ]);
         }
-    
     }
 
 
     /**
+     *
      * @return the $command
      */
     public function getMethodName ()
@@ -287,9 +310,8 @@ class AcctByte_Alibris_Request_ItemSearch
     }
 
 
-    public function getQueryString ()
+    public function toArray ()
     {
-        
         $args[ 'qauth' ] = $this->getQauth();
         $args[ 'qtit' ] = $this->getQtit();
         $args[ 'qtopic' ] = $this->getQtopic();
@@ -321,13 +343,12 @@ class AcctByte_Alibris_Request_ItemSearch
         $args[ 'qsort' ] = $this->getQsort();
         $args[ 'apikey' ] = $this->getApikey();
         
-        $query_str = http_build_query($args);
-        return $query_str;
-    
+        return array_merge(parent::toArray(), array_filter($args));
     }
 
 
     /**
+     *
      * @return the $mtype
      */
     public function getMtype ()
@@ -337,6 +358,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $chunk
      */
     public function getChunk ()
@@ -346,6 +368,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $skip
      */
     public function getSkip ()
@@ -355,6 +378,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qsort
      */
     public function getQsort ()
@@ -364,6 +388,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $apikey
      */
     public function getApikey ()
@@ -373,7 +398,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $mtype the $mtype to set
+     *
+     * @param $mtype the
+     *            $mtype to set
      */
     public function setMtype ($mtype)
     {
@@ -392,7 +419,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $chunk the $chunk to set
+     *
+     * @param $chunk the
+     *            $chunk to set
      */
     public function setChunk ($chunk)
     {
@@ -401,7 +430,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $skip the $skip to set
+     *
+     * @param $skip the
+     *            $skip to set
      */
     public function setSkip ($skip)
     {
@@ -410,13 +441,15 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qsort the $qsort to set
-     * If not specified, results will default to qsort=r
-     * r = rating/price (books searches only)
-     * t = title, tr = title reverse
-     * a =author, ar = author reverse
-     * p = price, pr = price reverse
-     * d = date (year), dr = date reverse
+     *
+     * @param $qsort the
+     *            $qsort to set
+     *            If not specified, results will default to qsort=r
+     *            r = rating/price (books searches only)
+     *            t = title, tr = title reverse
+     *            a =author, ar = author reverse
+     *            p = price, pr = price reverse
+     *            d = date (year), dr = date reverse
      */
     public function setQsort ($qsort)
     {
@@ -436,7 +469,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $apikey the $apikey to set
+     *
+     * @param $apikey the
+     *            $apikey to set
      */
     public function setApikey ($apikey)
     {
@@ -445,6 +480,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qauth
      */
     public function getQauth ()
@@ -454,6 +490,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qtit
      */
     public function getQtit ()
@@ -463,6 +500,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qtopic
      */
     public function getQtopic ()
@@ -472,6 +510,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qwork
      */
     public function getQwork ()
@@ -481,6 +520,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $query
      */
     public function getQuery ()
@@ -490,6 +530,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qpub
      */
     public function getQpub ()
@@ -499,6 +540,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qisbn
      */
     public function getQisbn ()
@@ -508,6 +550,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qisbnlist
      */
     public function getQisbnlist ()
@@ -517,6 +560,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qcond
      */
     public function getQcond ()
@@ -526,6 +570,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qcondhi
      */
     public function getQcondhi ()
@@ -535,6 +580,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qrating
      */
     public function getQrating ()
@@ -544,6 +590,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qlccl
      */
     public function getQlccl ()
@@ -553,6 +600,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $Invid
      */
     public function getInvid ()
@@ -562,6 +610,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $quserid
      */
     public function getQuserid ()
@@ -571,6 +620,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $binding
      */
     public function getBinding ()
@@ -580,6 +630,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $signed
      */
     public function getSigned ()
@@ -589,6 +640,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $first
      */
     public function getFirst ()
@@ -598,6 +650,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $dj
      */
     public function getDj ()
@@ -607,6 +660,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $language
      */
     public function getLanguage ()
@@ -616,6 +670,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qprice
      */
     public function getQprice ()
@@ -625,6 +680,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qpricehi
      */
     public function getQpricehi ()
@@ -634,6 +690,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qyear
      */
     public function getQyear ()
@@ -643,6 +700,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qyearhi
      */
     public function getQyearhi ()
@@ -652,6 +710,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qyearonly
      */
     public function getQyearonly ()
@@ -661,6 +720,7 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
+     *
      * @return the $qdays
      */
     public function getQdays ()
@@ -670,7 +730,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qauth the $qauth to set
+     *
+     * @param $qauth the
+     *            $qauth to set
      */
     public function setQauth ($qauth)
     {
@@ -679,7 +741,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qtit the $qtit to set
+     *
+     * @param $qtit the
+     *            $qtit to set
      */
     public function setQtit ($qtit)
     {
@@ -688,7 +752,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qtopic the $qtopic to set
+     *
+     * @param $qtopic the
+     *            $qtopic to set
      */
     public function setQtopic ($qtopic)
     {
@@ -697,7 +763,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qwork the $qwork to set
+     *
+     * @param $qwork the
+     *            $qwork to set
      */
     public function setQwork ($qwork)
     {
@@ -706,7 +774,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $query the $query to set
+     *
+     * @param $query the
+     *            $query to set
      */
     public function setQuery ($query)
     {
@@ -715,7 +785,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qpub the $qpub to set
+     *
+     * @param $qpub the
+     *            $qpub to set
      */
     public function setQpub ($qpub)
     {
@@ -724,7 +796,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qisbn the $qisbn to set
+     *
+     * @param $qisbn the
+     *            $qisbn to set
      */
     public function setQisbn ($qisbn)
     {
@@ -733,7 +807,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qisbnlist the $qisbnlist to set
+     *
+     * @param $qisbnlist the
+     *            $qisbnlist to set
      */
     public function setQisbnlist ($qisbnlist)
     {
@@ -742,7 +818,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qcond the $qcond to set
+     *
+     * @param $qcond the
+     *            $qcond to set
      */
     public function setQcond ($qcond)
     {
@@ -751,7 +829,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qcondhi the $qcondhi to set
+     *
+     * @param $qcondhi the
+     *            $qcondhi to set
      */
     public function setQcondhi ($qcondhi)
     {
@@ -760,7 +840,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qrating the $qrating to set
+     *
+     * @param $qrating the
+     *            $qrating to set
      */
     public function setQrating ($qrating)
     {
@@ -769,7 +851,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qlccl the $qlccl to set
+     *
+     * @param $qlccl the
+     *            $qlccl to set
      */
     public function setQlccl ($qlccl)
     {
@@ -778,7 +862,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $Invid the $Invid to set
+     *
+     * @param $Invid the
+     *            $Invid to set
      */
     public function setInvid ($Invid)
     {
@@ -787,7 +873,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $quserid the $quserid to set
+     *
+     * @param $quserid the
+     *            $quserid to set
      */
     public function setQuserid ($quserid)
     {
@@ -796,7 +884,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $binding the $binding to set
+     *
+     * @param $binding the
+     *            $binding to set
      */
     public function setBinding ($binding)
     {
@@ -805,7 +895,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $signed the $signed to set
+     *
+     * @param $signed the
+     *            $signed to set
      */
     public function setSigned ($signed)
     {
@@ -814,7 +906,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $first the $first to set
+     *
+     * @param $first the
+     *            $first to set
      */
     public function setFirst ($first)
     {
@@ -823,7 +917,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $dj the $dj to set
+     *
+     * @param $dj the
+     *            $dj to set
      */
     public function setDj ($dj)
     {
@@ -832,7 +928,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $language the $language to set
+     *
+     * @param $language the
+     *            $language to set
      */
     public function setLanguage ($language)
     {
@@ -841,7 +939,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qprice the $qprice to set
+     *
+     * @param $qprice the
+     *            $qprice to set
      */
     public function setQprice ($qprice)
     {
@@ -850,7 +950,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qpricehi the $qpricehi to set
+     *
+     * @param $qpricehi the
+     *            $qpricehi to set
      */
     public function setQpricehi ($qpricehi)
     {
@@ -859,7 +961,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qyear the $qyear to set
+     *
+     * @param $qyear the
+     *            $qyear to set
      */
     public function setQyear ($qyear)
     {
@@ -868,7 +972,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qyearhi the $qyearhi to set
+     *
+     * @param $qyearhi the
+     *            $qyearhi to set
      */
     public function setQyearhi ($qyearhi)
     {
@@ -877,7 +983,9 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qyearonly the $qyearonly to set
+     *
+     * @param $qyearonly the
+     *            $qyearonly to set
      */
     public function setQyearonly ($qyearonly)
     {
@@ -886,12 +994,12 @@ class AcctByte_Alibris_Request_ItemSearch
 
 
     /**
-     * @param $qdays the $qdays to set
+     *
+     * @param $qdays the
+     *            $qdays to set
      */
     public function setQdays ($qdays)
     {
         $this->qdays = $qdays;
     }
-
-
 }

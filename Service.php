@@ -25,24 +25,18 @@ class AcctByte_Alibris_Service extends AcctByte_WebService_Abstract
         
         $requestArguments = $this->_prepareArguments($inArguments, $defaultArguments);
         
-        try {
-            $request = new AcctByte_Alibris_Request_Search($requestArguments);
-            
-            $this->logger->debug("Request Query String: " . $request->getQueryString());
-            
-            $url = $this->baseApiUrl . 'search';
-            
-            $httpResponse = $this->getManager()->apiCall($url, $request);
-            $this->logger->debug("Response Body" . $httpResponse->getBody());
-            $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
-            // $response =
-        // $this->getManager()->simpleXMLElementToArray($parsedResponse);
-        } catch (AcctByte_Alibris_Exception $e) {
-            $error = new AcctByte_Alibris_Request_Error(500, $e->getMessage());
-            return $error->toArray();
-        }
+        $request = new AcctByte_Alibris_Request_Search($requestArguments);
         
-
+        $this->logger->debug("Request Query String: " . $request->getQueryString());
+        
+        $url = $this->baseApiUrl . 'search';
+        
+        $httpResponse = $this->getManager()->apiCall($url, $request);
+        $this->logger->debug("Response Body" . $httpResponse->getBody());
+        $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
+        // $response =
+        // $this->getManager()->simpleXMLElementToArray($parsedResponse);
+        
         if ( isset($parsedResponse->Errors) ) {
             $errObject = new AcctByte_Alibris_Response_Error($parsedResponse->Errors->ErrorID, $parsedResponse->Errors->ErrorText);
             return $errObject->toArray();
@@ -63,22 +57,17 @@ class AcctByte_Alibris_Service extends AcctByte_WebService_Abstract
         
         $requestArguments = $this->_prepareArguments($inArguments, $defaultArguments);
         
-        try {
-            $request = new AcctByte_Alibris_Request_ItemSearch($requestArguments);
-            
-            $this->logger->debug("Request Query String: " . $request->getQueryString());
-            
-            $url = $this->baseApiUrl . 'search';
-            
-            $httpResponse = $this->getManager()->apiCall($url, $request);
-            $this->logger->debug("Response Body" . $httpResponse->getBody());
-            $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
-            // $response =
+        $request = new AcctByte_Alibris_Request_ItemSearch($requestArguments);
+        
+        $this->logger->debug("Request Query String: " . $request->getQueryString());
+        
+        $url = $this->baseApiUrl . 'search';
+        
+        $httpResponse = $this->getManager()->apiCall($url, $request);
+        $this->logger->debug("Response Body" . $httpResponse->getBody());
+        $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
+        // $response =
         // $this->getManager()->simpleXMLElementToArray($parsedResponse);
-        } catch (AcctByte_Alibris_Exception $e) {
-            $error = new AcctByte_Alibris_Request_Error(500, $e->getMessage());
-            return $error->toArray();
-        }
         
 
         if ( isset($parsedResponse->Errors) ) {
@@ -100,22 +89,17 @@ class AcctByte_Alibris_Service extends AcctByte_WebService_Abstract
         
         $requestArguments = $this->_prepareArguments($inArguments, $defaultArguments);
         
-        try {
-            $request = new AcctByte_Alibris_Request_Recommend($requestArguments);
-            
-            $this->logger->debug("Request Query String: " . $request->getQueryString());
-            
-            $url = $this->baseApiUrl . $request->getMethodName();
-            
-            $httpResponse = $this->getManager()->apiCall($url, $request);
-            $this->logger->debug("Response Body" . $httpResponse->getBody());
-            $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
-            // $response =
+        $request = new AcctByte_Alibris_Request_Recommend($requestArguments);
+        
+        $this->logger->debug("Request Query String: " . $request->getQueryString());
+        
+        $url = $this->baseApiUrl . $request->getMethodName();
+        
+        $httpResponse = $this->getManager()->apiCall($url, $request);
+        $this->logger->debug("Response Body" . $httpResponse->getBody());
+        $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
+        // $response =
         // $this->getManager()->simpleXMLElementToArray($parsedResponse);
-        } catch (AcctByte_Alibris_Exception $e) {
-            $error = new AcctByte_Alibris_Request_Error(500, $e->getMessage());
-            return $error->toArray();
-        }
         
         if ( isset($parsedResponse->Errors) ) {
             $errObject = new AcctByte_Alibris_Response_Error($parsedResponse->Errors->ErrorID, $parsedResponse->Errors->ErrorText);
@@ -136,22 +120,17 @@ class AcctByte_Alibris_Service extends AcctByte_WebService_Abstract
         
         $requestArguments = $this->_prepareArguments($inArguments, $defaultArguments);
         
-        try {
-            $request = new AcctByte_Alibris_Request_Review($requestArguments);
-            
-            $this->logger->debug("Request Query String: " . $request->getQueryString());
-            
-            $url = $this->baseApiUrl . $request->getMethodName();
-            
-            $httpResponse = $this->getManager()->apiCall($url, $request);
-            $this->logger->debug("Response Body" . $httpResponse->getBody());
-            $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
-            // $response =
+        $request = new AcctByte_Alibris_Request_Review($requestArguments);
+        
+        $this->logger->debug("Request Query String: " . $request->getQueryString());
+        
+        $url = $this->baseApiUrl . $request->getMethodName();
+        
+        $httpResponse = $this->getManager()->apiCall($url, $request);
+        $this->logger->debug("Response Body" . $httpResponse->getBody());
+        $parsedResponse = $this->getManager()->parse($httpResponse->getBody());
+        // $response =
         // $this->getManager()->simpleXMLElementToArray($parsedResponse);
-        } catch (AcctByte_Alibris_Exception $e) {
-            $error = new AcctByte_Alibris_Request_Error(500, $e->getMessage());
-            return $error->toArray();
-        }
         
         if ( isset($parsedResponse->Errors) ) {
             

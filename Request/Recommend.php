@@ -18,6 +18,7 @@ class AcctByte_Alibris_Request_Recommend
 
 
     /**
+     *
      * @return the $command
      */
     public function getMethodName ()
@@ -28,16 +29,16 @@ class AcctByte_Alibris_Request_Recommend
 
     public function getQueryString ()
     {
-        
         $args[ 'work' ] = $this->getWork();
         $args[ 'apikey' ] = $this->getApikey();
         
         $query_str = http_build_query($args);
         return $query_str;
-    
     }
-    
-	/**
+
+
+    /**
+     *
      * @return the $work
      */
     public function getWork ()
@@ -45,7 +46,9 @@ class AcctByte_Alibris_Request_Recommend
         return $this->work;
     }
 
-	/**
+
+    /**
+     *
      * @return the $apikey
      */
     public function getApikey ()
@@ -53,24 +56,25 @@ class AcctByte_Alibris_Request_Recommend
         return $this->apikey;
     }
 
-	/**
-     * @param $work the $work to set
+
+    /**
+     *
+     * @param $work the
+     *            $work to set
      */
     public function setWork ($work)
     {
         $this->work = $work;
     }
 
-	/**
-     * @param $apikey the $apikey to set
+
+    /**
+     *
+     * @param $apikey the
+     *            $apikey to set
      */
     public function setApikey ($apikey)
     {
         $this->apikey = $apikey;
     }
-
-
-
-
-
 }

@@ -56,11 +56,11 @@ class AcctByte_Alibris_Request_Search
         if ( isset($inRequestArguments[ 'skip' ]) ) {
             $this->setSkip($inRequestArguments[ 'skip' ]);
         }
-    
     }
 
 
     /**
+     *
      * @return the $command
      */
     public function getMethodName ()
@@ -71,7 +71,6 @@ class AcctByte_Alibris_Request_Search
 
     public function getQueryString ()
     {
-        
         $args[ 'wauth' ] = $this->getWauth();
         $args[ 'wtit' ] = $this->getWtit();
         $args[ 'wtopic' ] = $this->getWtopic();
@@ -84,11 +83,11 @@ class AcctByte_Alibris_Request_Search
         
         $query_str = http_build_query($args);
         return $query_str;
-    
     }
 
 
     /**
+     *
      * @return the $wauth
      */
     public function getWauth ()
@@ -98,6 +97,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $wtit
      */
     public function getWtit ()
@@ -107,6 +107,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $wtopic
      */
     public function getWtopic ()
@@ -116,6 +117,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $wquery
      */
     public function getWquery ()
@@ -125,6 +127,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $mtype
      */
     public function getMtype ()
@@ -134,6 +137,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $chunk
      */
     public function getChunk ()
@@ -143,6 +147,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $skip
      */
     public function getSkip ()
@@ -152,6 +157,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $qsort
      */
     public function getQsort ()
@@ -161,6 +167,7 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
+     *
      * @return the $apikey
      */
     public function getApikey ()
@@ -170,7 +177,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $wauth the $wauth to set
+     *
+     * @param $wauth the
+     *            $wauth to set
      */
     public function setWauth ($wauth)
     {
@@ -179,7 +188,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $wtit the $wtit to set
+     *
+     * @param $wtit the
+     *            $wtit to set
      */
     public function setWtit ($wtit)
     {
@@ -188,7 +199,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $wtopic the $wtopic to set
+     *
+     * @param $wtopic the
+     *            $wtopic to set
      */
     public function setWtopic ($wtopic)
     {
@@ -197,7 +210,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $wquery the $wquery to set
+     *
+     * @param $wquery the
+     *            $wquery to set
      */
     public function setWquery ($wquery)
     {
@@ -206,7 +221,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $mtype the $mtype to set
+     *
+     * @param $mtype the
+     *            $mtype to set
      */
     public function setMtype ($mtype)
     {
@@ -225,7 +242,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $chunk the $chunk to set
+     *
+     * @param $chunk the
+     *            $chunk to set
      */
     public function setChunk ($chunk)
     {
@@ -234,7 +253,9 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $skip the $skip to set
+     *
+     * @param $skip the
+     *            $skip to set
      */
     public function setSkip ($skip)
     {
@@ -243,13 +264,15 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $qsort the $qsort to set
-     * If not specified, results will default to qsort=r
-     * r = rating/price (books searches only)
-     * t = title, tr = title reverse
-     * a =author, ar = author reverse
-     * p = price, pr = price reverse
-     * d = date (year), dr = date reverse
+     *
+     * @param $qsort the
+     *            $qsort to set
+     *            If not specified, results will default to qsort=r
+     *            r = rating/price (books searches only)
+     *            t = title, tr = title reverse
+     *            a =author, ar = author reverse
+     *            p = price, pr = price reverse
+     *            d = date (year), dr = date reverse
      */
     public function setQsort ($qsort)
     {
@@ -269,12 +292,12 @@ class AcctByte_Alibris_Request_Search
 
 
     /**
-     * @param $apikey the $apikey to set
+     *
+     * @param $apikey the
+     *            $apikey to set
      */
     public function setApikey ($apikey)
     {
         $this->apikey = $apikey;
     }
-
-
 }

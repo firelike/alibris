@@ -1,1 +1,3 @@
-Alibris client
+Alibris
+====
+Wrapper for the Alibris API.

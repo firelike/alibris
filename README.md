@@ -84,4 +84,4 @@ return [
 ## Links
 
 * [Zend Framework website](http://framework.zend.com)
-* [Arin WHOIS RWS](http://whois.arin.net/ui)
+* [Alibris website](http://www.alibris.com)

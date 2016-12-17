@@ -302,16 +302,6 @@ class ItemSearch extends AbstractRequest
     }
 
 
-    /**
-     *
-     * @return string $command
-     */
-    public function getMethodName()
-    {
-        return 'item-search';
-    }
-
-
     public function toArray()
     {
         $args['qauth'] = $this->getQauth();
@@ -351,7 +341,7 @@ class ItemSearch extends AbstractRequest
 
     /**
      *
-     * @return the $mtype
+     * @return string $mtype
      */
     public function getMtype()
     {
@@ -361,7 +351,7 @@ class ItemSearch extends AbstractRequest
 
     /**
      *
-     * @return the $chunk
+     * @return string $chunk
      */
     public function getChunk()
     {
@@ -371,7 +361,7 @@ class ItemSearch extends AbstractRequest
 
     /**
      *
-     * @return the $skip
+     * @return string $skip
      */
     public function getSkip()
     {
@@ -381,7 +371,7 @@ class ItemSearch extends AbstractRequest
 
     /**
      *
-     * @return the $qsort
+     * @return string $qsort
      */
     public function getQsort()
     {
@@ -391,7 +381,7 @@ class ItemSearch extends AbstractRequest
 
     /**
      *
-     * @return the $apikey
+     * @return string $apikey
      */
     public function getApikey()
     {

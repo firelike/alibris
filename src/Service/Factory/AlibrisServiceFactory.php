@@ -13,6 +13,16 @@ class AlibrisServiceFactory implements FactoryInterface
     {
         $service = new AlibrisService();
 
+        $config = $sm->get('Config');
+        if (isset($config['alibris_service'])) {
+            if (isset($config['alibris_service']['service_url'])) {
+                $service->setServiceUrl($config['alibris_service']['service_url']);
+            }
+            if (isset($config['alibris_service']['api_key'])) {
+                $service->setApiKey($config['alibris_service']['api_key']);
+            }
+        }
+
         return $service;
     }
 

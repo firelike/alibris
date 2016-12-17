@@ -59,12 +59,6 @@ class Search extends AbstractRequest
     }
 
 
-    public function getMethodName()
-    {
-        return 'search';
-    }
-
-
     public function toArray()
     {
         $args['wauth'] = $this->getWauth();
@@ -82,7 +76,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $wauth
+     * @return string $wauth
      */
     public function getWauth()
     {
@@ -92,7 +86,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $wtit
+     * @return string $wtit
      */
     public function getWtit()
     {
@@ -102,7 +96,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $wtopic
+     * @return string $wtopic
      */
     public function getWtopic()
     {
@@ -112,7 +106,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $wquery
+     * @return string $wquery
      */
     public function getWquery()
     {
@@ -122,7 +116,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $mtype
+     * @return string $mtype
      */
     public function getMtype()
     {
@@ -132,7 +126,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $chunk
+     * @return string $chunk
      */
     public function getChunk()
     {
@@ -142,7 +136,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $skip
+     * @return string $skip
      */
     public function getSkip()
     {
@@ -152,7 +146,7 @@ class Search extends AbstractRequest
 
     /**
      *
-     * @return the $qsort
+     * @return string $qsort
      */
     public function getQsort()
     {

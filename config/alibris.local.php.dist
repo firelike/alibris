@@ -1,0 +1,7 @@
+<?php
+return [
+    'alibris_service' => [
+        'service_url' => 'http://api.alibris.com/v1/public/',
+        'api_key' => '',
+    ]
+];
